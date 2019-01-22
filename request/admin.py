@@ -11,8 +11,11 @@ class RequestAdmin(admin.ModelAdmin):
         'amount',
         'customer',
         'author',
-        'status'
+        'status',
+        'costcenter'
     ]
     ordering=['-date']
 
 admin.site.register(Request, RequestAdmin)
+
+admin.site.register(CostCenter)

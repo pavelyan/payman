@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'request.apps.RequestConfig',
+    'user.apps.UserConfig',
     'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -127,3 +128,5 @@ USE_THOUSAND_SEPARATOR = True
 STATIC_URL = '/static/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+LOGIN_REDIRECT_URL = 'requests_list'

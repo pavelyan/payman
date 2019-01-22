@@ -1,0 +1,17 @@
+{% extends 'master.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container">
+    <form method="POST">
+        {% csrf_token %}
+        <br/>
+        <fieldset class="form-group">
+            <legend class="mb-4">Вход в систему:</legend>
+            {{ form|crispy }}
+        </fieldset>
+        <div class="form-group">
+            <button class="btn btn-success btn-small" type="submit">Вход</button>
+        </div>
+    </form>
+</div>
+{% endblock content %}

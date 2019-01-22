@@ -13,20 +13,43 @@
           <th scope="col">Назначение</th>
           <th scope="col">Сумма</th>
           <th scope="col">Автор</th>
+          <th scope="col">Оплачено</th>
+          <th scope="col">ЦФО</th>
         </tr>
       </thead>
       <tbody>
-        <!-- all requests for Power Users -->
-        {% for req in all_requests %}
-            <tr>
-              <th scope="row">{{ req.id }}</th>
-              <td>{{ req.date|date:"d.m.Y" }}</td>
-              <td><a href="#">{{ req.customer.customer }}</a></td>
-              <td>{{ req.purpose }}</td>
-              <td>{{ req.amount }}</td>
-              <td><a href="#">{{ req.author }}</a></td>
-            </tr>
-        {% endfor %}
+        <!-- Show all requests for Power Users -->
+        {% if request.user.groups.all.0.name == 'PowerUsers' %}
+            {% for req in all_requests %}
+                <tr>
+                  <th scope="row">{{ req.id }}</th>
+                  <td>{{ req.date|date:"d.m.Y" }}</td>
+                  <td><a href="#">{{ req.customer.customer }}</a></td>
+                  <td>{{ req.purpose }}</td>
+                  <td>{{ req.amount }}</td>
+                  <td><a href="#">{{ req.author }}</a></td>
+                  <td>{{ req.status }}</td>
+                  <td>{{ req.costcenter }}</td>
+                </tr>
+            {% endfor %}
+        {% endif %}
+        <!-- Show only personal requests for others -->
+        {% if request.user.groups.all.0.name != 'PowerUsers' %}
+            {% for req in my_requests %}
+                <tr>
+                  <th scope="row">{{ req.id }}</th>
+                  <td>{{ req.date|date:"d.m.Y" }}</td>
+                  <td><a href="#">{{ req.customer.customer }}</a></td>
+                  <td>{{ req.purpose }}</td>
+                  <td>{{ req.amount }}</td>
+                  <td><a href="#">{{ req.author }}</a></td>
+                  <td>{{ req.status }}</td>
+                  <td>{{ req.costcenter }}</td>
+                </tr>
+            {% endfor %}
+        {% endif %}
+
+
       </tbody>
     </table>
 
