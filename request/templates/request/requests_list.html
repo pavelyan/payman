@@ -1,41 +1,10 @@
 {% extends "master.html" %}
+{% load render_table from django_tables2 %}
 {% block content %}
 
 <div class="container pt-3 mb-4">
-  
   <h2>{{scope}}</h2>
-
-  <table class="table table-borfered">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Дата</th>
-        <th scope="col">Контрагент</th>
-        <th scope="col">Назначение</th>
-        <th scope="col">Сумма</th>
-        <th scope="col">Автор</th>
-        <th scope="col">Оплачено</th>
-        <th scope="col">ЦФО</th>
-      </tr>
-    </thead>
-    <tbody>
-
-      {% for req in r_list %}
-      <tr>
-        <th scope="row">{{ req.id }}</th>
-        <td>{{ req.date_planned|date:"d.m.Y" }}</td>
-        <td><a href="#">{{ req.customer.customer }}</a></td>
-        <td>{{ req.purpose }}</td>
-        <td>{{ req.amount }}</td>
-        <td><a href="#">{{ req.author }}</a></td>
-        <td>{{ req.status }}</td>
-        <td>{{ req.costcenter }}</td>
-      </tr>
-      {% endfor %}
-
-    </tbody>
-  </table>
+  {% render_table r_list %}
 </div>
-
 
 {% endblock content %}
