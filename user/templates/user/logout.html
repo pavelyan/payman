@@ -1,0 +1,16 @@
+{% extends 'master.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container">
+        <br/>
+        <fieldset class="form-group">
+            <legend class="mb-4">Ваш сеанс работы с системой завершен</legend>
+            <div class="border-top mb-4">
+                <small class="text-muted">
+                    Для продолжения работы<a class="ml-3" href="{% url 'login' %}">необходимо выполнить вход в систему</a>
+                </small>
+            </div>
+        </fieldset>
+
+</div>
+{% endblock content %}

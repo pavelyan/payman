@@ -6,10 +6,10 @@
         {% csrf_token %}
         <br/>
         <fieldset class="form-group">
-            <legend class="mb-2">Вход в систему</legend>
+            <legend class="mb-2">Регистрация нового пользователя</legend>
             <div class="border-bottom mb-4">
                 <small class="text-muted">
-                    Если у вас еще нет логина и пароля для работы в системе,<a class="ml-3" href="{% url 'register' %}">пройдите на страницу регистрации</a>
+                    Если вы уже зарегистрированы в системе,<a class="ml-3" href="{% url 'login' %}">войдите со своим логином и паролем</a>
                 </small>
             </div>
             {{ form|crispy }}

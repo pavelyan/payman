@@ -6,7 +6,7 @@ admin.site.register(Customer)
 
 class RequestAdmin(admin.ModelAdmin):
     list_display=[
-        'date',
+        'date_planned',
         'purpose',
         'amount',
         'customer',
@@ -14,7 +14,7 @@ class RequestAdmin(admin.ModelAdmin):
         'status',
         'costcenter'
     ]
-    ordering=['-date']
+    ordering=['-date_planned']
 
 admin.site.register(Request, RequestAdmin)
 

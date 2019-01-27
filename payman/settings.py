@@ -129,4 +129,6 @@ STATIC_URL = '/static/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-LOGIN_REDIRECT_URL = 'requests_list'
+LOGIN_REDIRECT_URL = 'home'
+
+POWER_USERS_GROUP = 'PowerUsers'

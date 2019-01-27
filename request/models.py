@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from datetime import date
 from django.contrib.auth.models import User
 
 
@@ -26,12 +27,12 @@ class Request(models.Model):
     )
     purpose=models.CharField(max_length=100)
     amount=models.DecimalField(max_digits=12,decimal_places=2)
-    date=models.DateTimeField(default=timezone.now)
+    date_planned=models.DateTimeField(default=timezone.now)
     status=models.CharField(max_length=1, choices=PAYED, default='N')
     author=models.ForeignKey(User, on_delete=models.CASCADE)
     customer=models.ForeignKey(Customer, null=True, default=None, blank=True, on_delete=models.CASCADE)
     costcenter=models.ForeignKey(CostCenter, null=True, default=None, blank=True, on_delete=models.CASCADE)
 
     def __str__(self):
-        return '{}  {}  {}  {}'.format(self.date, self.purpose, self.amount, self.status)
+        return '{}  {}  {}  {}'.format(self.date_planned, self.purpose, self.amount, self.status)
     
