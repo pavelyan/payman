@@ -21,9 +21,9 @@ class CostCenter(models.Model):
 
 class Request(models.Model):
     PAYED=(
-        ('N','NO'),
-        ('Y','YES'),
-        ('P','PARTLY')
+        ('N','Нет'),
+        ('Y','Да'),
+        ('P','Часть')
     )
     purpose=models.CharField(max_length=100)
     amount=models.DecimalField(max_digits=12,decimal_places=2)
