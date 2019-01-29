@@ -1,14 +1,17 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.views.generic import DetailView
 from django.conf import settings
 from datetime import datetime, timedelta
 from django.utils import timezone
-from .models import *
 from django.db.models import Q
 from django_tables2 import RequestConfig
-from .tables import RequestTable
 from django.db.models import Sum
+from .models import *
+from .tables import RequestsList
 from .utils import requests_table
+from .forms import RequestForm
 
 # Create your views here.
 
@@ -48,3 +51,21 @@ def overdue_requests(request):
     else:
         qset=Request.objects.filter(author__username=request.user).filter(date_planned__lt=timezone.now()-timedelta(days=1)).filter(status='N').order_by('date_planned')
     return requests_table(request, qset, 'Просроченные заявки')
+
+
+@login_required
+def new_request(request):
+    if request.method == 'POST':
+        form = RequestForm(request.POST)
+        if form.is_valid():
+            form.save()
+            amount = form.cleaned_data.get('amount')
+            messages.success(
+                request, f'Заявка на сумму {amount} от пользователя {request.user} добавлена!')
+            return redirect('all_requests')
+    else:
+        form = RequestForm()
+    context ={
+        'form' : form
+    }
+    return render(request, 'request/request_form.html', context)

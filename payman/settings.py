@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'user.apps.UserConfig',
     'crispy_forms',
     'django_tables2',
+    'bootstrap_datepicker_plus',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -128,8 +129,10 @@ USE_THOUSAND_SEPARATOR = True
 
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = ( os.path.join('static'), )
+
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'homepage'
 
 POWER_USERS_GROUP = 'PowerUsers'

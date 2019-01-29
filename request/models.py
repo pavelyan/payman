@@ -25,13 +25,13 @@ class Request(models.Model):
         ('Y','Да'),
         ('P','Часть')
     )
-    purpose=models.CharField(max_length=100)
-    amount=models.DecimalField(max_digits=12,decimal_places=2)
-    date_planned=models.DateTimeField(default=timezone.now)
-    status=models.CharField(max_length=1, choices=PAYED, default='N')
-    author=models.ForeignKey(User, on_delete=models.CASCADE)
-    customer=models.ForeignKey(Customer, null=True, default=None, blank=True, on_delete=models.CASCADE)
-    costcenter=models.ForeignKey(CostCenter, null=True, default=None, blank=True, on_delete=models.CASCADE)
+    purpose=models.CharField(max_length=100, verbose_name='Назначение платежа')
+    amount=models.DecimalField(max_digits=12,decimal_places=2, verbose_name='Требуемая сумма')
+    date_planned=models.DateTimeField(default=timezone.now, verbose_name='Планируемая дата')
+    status=models.CharField(max_length=1, choices=PAYED, default='N', verbose_name='Оплачено')
+    author=models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Инициатор')
+    customer=models.ForeignKey(Customer, null=True, default=None, blank=True, on_delete=models.CASCADE, verbose_name='Контрагент')
+    costcenter=models.ForeignKey(CostCenter, null=True, default=None, blank=True, on_delete=models.CASCADE, verbose_name='ЦФО')
 
     def __str__(self):
         return '{}  {}  {}  {}'.format(self.date_planned, self.purpose, self.amount, self.status)

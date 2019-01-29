@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .models import *
 from django_tables2 import RequestConfig
-from .tables import RequestTable
+from .tables import RequestsList
 from django.db.models import Sum
 
 
@@ -11,8 +11,8 @@ def requests_table(request, qs_tmp, t_header):
     s = qs_tmp.aggregate(Sum('amount'))['amount__sum']
     if s==None:
         s=0        
-    scope='Соответствующих заявок ({}), на сумму {:,} руб.'.format(str(qs_tmp.count()),s).replace(',', ' ')
-    r_list=RequestTable(qs_tmp)
+    scope='Соответствующих заявок: {} (на сумму {:,} руб.)'.format(str(qs_tmp.count()),s).replace(',', ' ')
+    r_list=RequestsList(qs_tmp)
     RequestConfig(request,paginate={'per_page': 20}).configure(r_list)
     topic_header = t_header
     context = {

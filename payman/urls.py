@@ -18,11 +18,11 @@ from django.urls import path, include
 from django.contrib.auth import views as auth_views
 from .views import start_dispatch
 from user import views as user_views
-"""from request import views as request_views"""
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', start_dispatch, name='home'),
+    path('', start_dispatch, name='homepage'),
     path('requests/', include('request.urls')),
     path('register/',user_views.register, name='register'),
     path('login/', auth_views.LoginView.as_view(template_name='user/login.html'), name='login'),
