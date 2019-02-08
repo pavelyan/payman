@@ -19,3 +19,5 @@ class RequestAdmin(admin.ModelAdmin):
 admin.site.register(Request, RequestAdmin)
 
 admin.site.register(CostCenter)
+
+admin.site.register(Upload)

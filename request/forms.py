@@ -1,13 +1,14 @@
 from django import forms
-from django.forms import ModelForm
+from django.forms import ModelForm, FileInput, ClearableFileInput
 from bootstrap_datepicker_plus import DatePickerInput
 from .models import *
 
-class RequestForm(forms.ModelForm):
 
+class NewRequestForm(forms.ModelForm):
+            
     class Meta:
         model = Request
-        exclude = ['author']
+        fields = ('purpose', 'date_planned', 'amount', 'customer', 'costcenter',)
         widgets = {
             'date_planned': DatePickerInput(
                 options={
@@ -19,4 +20,17 @@ class RequestForm(forms.ModelForm):
                 }),
         }
 
+        
+
+class UploadForm(forms.ModelForm):
+
+    class Meta:
+        model = Upload
+        fields = ('scan',)
+        widgets = {
+            'scan' : ClearableFileInput(
+                attrs={
+                    'multiple': True,
+                }),
+        }
 

@@ -1,0 +1,6 @@
+ps auxw | grep runserver
+kill #_of_process
+
+==================================
+pkill -f runserver
+

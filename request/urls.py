@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from .views import RequestDetailView
 
 
 urlpatterns = [
@@ -8,4 +9,5 @@ urlpatterns = [
     path('payed/', views.payed_requests, name='payed_requests'),
     path('overdue/', views.overdue_requests, name='overdue_requests'),
     path('new/', views.new_request, name='new_request'),
+    path('<int:pk>/', views.request_details, name='this_request'),
 ]
